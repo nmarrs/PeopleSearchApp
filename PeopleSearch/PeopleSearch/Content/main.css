@@ -1,0 +1,97 @@
+﻿.whitecaret{
+    border-top:4px solid white;
+}
+
+.white {
+    font-family: 'Bree Serif', Georgia, Helvetica, serif;
+    color: white;
+}
+
+/* Clearing Element */
+.clear {
+    clear: both;
+}
+
+table th {
+    width: auto !important;
+}
+/*Overriding bootstrap table column width settings to auto increment*/
+
+/* Admin Custom Css */
+
+.Admindashitem {
+    display: block;
+    font-family: 'Bree Serif', Georgia, Helvetica, serif;
+    border-color: black;
+    border-width: 1px;
+    border-style: solid;
+    height: auto;
+    border-radius: 5px;
+}
+
+/* Dashboard Custom CSS */
+
+#DashTitle {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    padding-bottom: 75px;
+}
+
+#doelogo {
+    width: 150px;
+    float: right;
+}
+
+.left {
+    float: left;
+}
+
+#personDash {
+    background-color: #262626;
+}
+
+.personSearch {
+    background-color: rgb( 77, 77, 77);
+    font-family: 'Bree Serif', Georgia, Helvetica, serif;
+}
+
+.padding {
+    padding-top: 5px;
+    padding-bottom: 30px;
+}
+.dashitem {
+    background-color: rgb( 77, 77, 77);
+    display: block;
+    font-family: 'Bree Serif', Georgia, Helvetica, serif;
+    color: white;
+    border-radius: 5px;
+    height: auto;
+}
+
+.col-md-4 {
+    margin: 3px;
+}
+
+.col-md-3 {
+    margin: 3px;
+}
+.itemTitle {
+    background-color: rgba( 77, 77, 77, .8);
+}
+
+.modal-footer {
+    font-size: 2rem;
+}
+
+.input[type=text] {
+    width: 130px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+/* When the input field gets focus, change its width to 100% */
+input[type=text]:focus {
+    width: 100%;
+}
+
+
+

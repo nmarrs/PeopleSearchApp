@@ -1,0 +1,69 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<link href="~/Content/main.css" rel="stylesheet" />
+
+<body id="personDash">
+
+    <div id="DashTitle" class="jumbotron">
+        <h1>People Search - Dashboard</h1>
+        <h2 class="left"> We Look People Up &trade; </h2>
+        <img id="doelogo" class="img-responsive small left" src="~/Content/images/logo.jpg" />
+    </div>
+    <!--Setting up a sweet dashboard, utilizing css found in "/Content/main.css"-->
+
+    <div class="col-md-11 dashitem">
+        <div class="itemTitle">
+            <h2> Search </h2>
+        </div>
+        <div>
+            <h3>Search for anyone in our database using their first name.</h3>
+        </div>
+        <div class="modal-footer">
+            <p>@Html.ActionLink("Search", "Search", "Search", null, new { @class = "btn btn-primary btn-md " })</p>
+        </div>
+    </div>
+
+    <div class="col-md-4 dashitem">
+        <div class="itemTitle">
+            <h2> Number of Successful Searches </h2>
+        </div>
+        <div>
+            <h1 class="dashNumbers"> 120 </h1>
+        </div>
+        <div class="modal-footer">
+            <p>@Html.ActionLink("View Details", "SearchInfo", "Search", null, new { @class = "btn btn-primary btn-md " })</p>
+        </div>
+    </div>
+    <!--Look up some way to keep track of this maybe? Then store that info to another page and connect to action link-->
+
+    <div class="col-md-3 dashitem">
+        <div class="itemTitle">
+            <h2> Number of Unsuccessful Searches  </h2>
+        </div>
+        <div>
+            <h1 class="dashNumbers"> 15 </h1>
+        </div>
+        <div class="modal-footer">
+            <p>@Html.ActionLink("View Details", "SearchInfo", "Search", null, new { @class = "btn btn-primary btn-md " })</p>
+        </div>
+    </div>
+    <!--Look up some way to keep track of this maybe? Then store that info to another page and connect to action link-->
+
+    <div class="col-md-4 dashitem">
+        <div class="itemTitle">
+            <h2> Number of People in Database </h2>
+        </div>
+        <div>
+            <h1 class="dashNumbers">6</h1>
+            <!--The number of people is currently hard coded-->
+        </div>
+        <div class="modal-footer">
+            <p>@Html.ActionLink("View Details", "IndexReadOnly", "Person", null, new { @class = "btn btn-primary btn-md " })</p>
+        </div>
+    </div>
+    <!--How to keep track of this?-->
+
+    <div class="clear"></div>
+</body>

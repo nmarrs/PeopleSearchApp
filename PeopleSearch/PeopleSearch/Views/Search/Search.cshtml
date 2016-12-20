@@ -1,0 +1,142 @@
+﻿<!--This view contains the search functionality of the application.
+    The view uses javascript to utilize AJAX to asynchronously load JSON data from the 
+    database server onto the view.-->
+@{
+    ViewBag.Title = "Search";
+}
+    
+<link href="~/Content/main.css" rel="stylesheet" />
+
+<body id="personDash">
+    <div class="personSearch text-center padding">
+        <h2 class="white">People Search</h2>
+
+        <br />
+
+        <h4 class="white">Search for anyone in our database using their first name.</h4>
+
+        <br />
+            <strong class="white">Search : </strong><input type="text" id="txtSearch" />
+        <!--Possibly add the ability to auto complete the search input using current data in database-->
+            <br />
+            <br />
+            <button type="submit" id="btnSearch" class="btn btn-info btn-md">
+                <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search
+            </button>
+        <!--This button calls the Search function below which returns the people whose first name matches
+            the input in the text box-->
+            <button type="submit" id="btnAllPeople" class="btn btn-info btn-md">
+                <span class="glyphicon glyphicon-user" aria-hidden="true"></span> List All People
+            </button>
+        <!--This button is called by the GetAllPeople function below which returns all people in the database-->
+        <!--Glyphicon classes are from Bootstrap and add the cool images on the buttons-->
+    </div>
+    <br />
+    <div class="whitecaret"></div>
+    <br />
+    <div class="table-responsive">
+        <table class="white table" style="width: 100%;">
+            <!--Having some issues with formatting the table,
+                see the loadData function below for possible formatting errors-->
+            <tr>
+                <td>
+                    <div id="UpdatePanel">
+                        <!--This div is called by the loadData function to append the json data sourced from 
+                            the database and called by ajax-->
+
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+
+            // This is for Get All Data
+            $("#btnAllPeople").click(function () {
+ 
+                $.ajax({
+                    url: "@Url.Action("GetAllPeople","Search")",
+                    data: "",
+                type: "GET",
+                dataType: "json",
+                success: function (data) {
+                    loadData(data);
+                },
+                error: function () {
+                    alert("Failed! Please try again.");
+                }
+                });
+            });
+
+            /*this function is used to get data based on search keyword
+            when keyword is "" empty all users are listed, this is intentional so that
+            the user know who they can look up
+            When the keyword does not match any record only the table headings are returned,
+            signaling to the user that no such user exists.*/
+            $("#btnSearch").click(function () {
+                $.ajax({
+                    url: "@Url.Action("SearchPeopleJson", "Search")",
+                    data: { keyword: $('#txtSearch').val() },
+                    type: "GET",
+                    dataType: "json",
+                    success: function (data) {
+                        loadData(data);
+                    },
+                    error: function () {
+                        alert("Failed! Please try again.")
+                    }
+                });
+            });
+
+            function loadData(data) {
+                //Here we will format and load/show data
+                var tab = $('<table></table>');
+                var thead = $('<thead></thead>');
+                thead.append('<th>First Name </th>');
+                thead.append('<th>Last Name </th>');
+                thead.append('<th>Address Line 1 </th>');
+                thead.append('<th>Address Line 2 </th>');
+                thead.append('<th>City </th>');
+                thead.append('<th>State </th>');
+                thead.append('<th>ZIP</th>');
+                thead.append('<th>Age </th>');
+                //thead.append('<th>Gender</th>');
+                //cut due to spacing reasons, sorry gender :(
+                thead.append('<th>Email </th>');
+                thead.append('<th>Primary Phone </th>');
+                thead.append('<th>Interests </th>');
+                thead.append('<th>Picture </th>');
+
+                tab.append(thead);
+                $.each(data, function (i, val) {
+                    //Append database data here
+                    var trow = $('<tr></tr>');
+                    trow.append('<td>' + val.FirstName + '</td>');
+                    trow.append('<td>' + val.LastName + '</td>');
+                    trow.append('<td>' + val.AddressLine1 + '</td>');
+                    trow.append('<td>' + val.AddressLine2 + '</td>');
+                    trow.append('<td>' + val.City + '</td>');
+                    trow.append('<td>' + val.State + '</td>');
+                    trow.append('<td>' + val.ZIP + '</td>');
+                    trow.append('<td>' + val.Age + '</td>');
+                    //trow.append('<td>' + val.Gender + '</td>');
+                    //cut due to spacing reasons
+                    trow.append('<td>' + val.Email + '</td>');
+                    trow.append('<td>' + val.PrimaryPhone + '</td>');
+                    trow.append('<td>' + val.Interests + '</td>');
+                    trow.append('<td><img class="img-circle img-responsive" alt="Person Image" src="' + val.Picture + '" width="100" height="100" /></td>');
+                    tab.append(trow);
+                });
+                $("tr:odd", tab).css('background-color', '#2F4F4F');
+                $("#UpdatePanel").html(tab);
+            };
+            //Have some issues with the formating of the table
+            //Pretty sure the formatting is getting messed up due to improper table html tags somehow
+        });
+    </script>
+}
+
