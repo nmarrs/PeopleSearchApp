@@ -94,7 +94,7 @@
 
             function loadData(data) {
                 //Here we will format and load/show data
-                var tab = $('<table></table>');
+                var tab = $('<table class="myTable style="width=100%;"></table>');
                 var thead = $('<thead></thead>');
                 thead.append('<th>First Name </th>');
                 thead.append('<th>Last Name </th>');
@@ -104,10 +104,10 @@
                 thead.append('<th>State </th>');
                 thead.append('<th>ZIP</th>');
                 thead.append('<th>Age </th>');
-                //thead.append('<th>Gender</th>');
-                //cut due to spacing reasons, sorry gender :(
-                thead.append('<th>Email </th>');
-                thead.append('<th>Primary Phone </th>');
+                thead.append('<th>Gender</th>');
+                //cut due to spacing reasons :(
+                //thead.append('<th>Email </th>');
+                //thead.append('<th>Primary Phone </th>');
                 thead.append('<th>Interests </th>');
                 thead.append('<th>Picture </th>');
 
@@ -123,10 +123,10 @@
                     trow.append('<td>' + val.State + '</td>');
                     trow.append('<td>' + val.ZIP + '</td>');
                     trow.append('<td>' + val.Age + '</td>');
-                    //trow.append('<td>' + val.Gender + '</td>');
+                    trow.append('<td>' + val.Gender + '</td>');
                     //cut due to spacing reasons
-                    trow.append('<td>' + val.Email + '</td>');
-                    trow.append('<td>' + val.PrimaryPhone + '</td>');
+                    //trow.append('<td>' + val.Email + '</td>');
+                    //trow.append('<td>' + val.PrimaryPhone + '</td>');
                     trow.append('<td>' + val.Interests + '</td>');
                     trow.append('<td><img class="img-circle img-responsive" alt="Person Image" src="' + val.Picture + '" width="100" height="100" /></td>');
                     tab.append(trow);
